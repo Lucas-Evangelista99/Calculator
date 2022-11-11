@@ -21,6 +21,28 @@
     background-color: #F2EFE9;
 }
 
+.expression {
+    height: 100px;
+    width: 500px;
+    background-color: #F2EFE9;
+    text-align: right;
+    line-height: 150px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    padding-right: 20px;
+}
+
+.typed {
+    height: 100px;
+    width: 500px;
+    background-color: #F2EFE9;
+    text-align: right;
+    line-height: 130px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 48px;
+    padding-right: 20px;
+}
+
 .keys {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -51,5 +73,5 @@ button {
 }
 
     button:hover {
-    background-color: #6daa0a;
+    background-color: rgb(101, 168, 14);
   }
