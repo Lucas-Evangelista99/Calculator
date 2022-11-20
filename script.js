@@ -33,12 +33,17 @@ let expression = div2[0]
 let numbers = document.getElementsByClassName("number")
 let decimal = document.getElementsByClassName("decimal")
 let decimal_button = decimal[0]
+let operators = document.getElementsByClassName("operator")
 
 function type_num(num) {
     if (typed_nums.textContent == "0") {
         typed_nums.textContent = num.textContent
     } else {
-        typed_nums.textContent += num.textContent
+        if (typed_nums.textContent.length >= 15) {
+            typed_nums.textContent = typed_nums.textContent
+        } else {
+            typed_nums.textContent += num.textContent
+        }
     }
 }
 
@@ -47,7 +52,11 @@ function type_decimal(elem) {
         elem.disabled = true
     } else {
         elem.disabled = false
-        typed_nums.textContent += elem.textContent
+        if (typed_nums.textContent.length >= 15) {
+            typed_nums.textContent = typed_nums.textContent
+        } else {
+            typed_nums.textContent += elem.textContent 
+        }
     }
 }
 
