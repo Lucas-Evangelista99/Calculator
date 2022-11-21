@@ -72,6 +72,11 @@ function delete_num() {
     }
 }
 
+function clear_calc() {
+    expression.textContent = ""
+    typed_nums.textContent = "0"
+}
+
 for (let i = 0; i < numbers.length; i++) {
     numbers[i].addEventListener("click", function(){
         type_num(numbers[i])
@@ -83,3 +88,4 @@ decimal_button.addEventListener("click", function(){
 })
 
 del_button.addEventListener("click", delete_num)
+clear_button.addEventListener("click", clear_calc)
