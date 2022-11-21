@@ -34,6 +34,10 @@ let numbers = document.getElementsByClassName("number")
 let decimal = document.getElementsByClassName("decimal")
 let decimal_button = decimal[0]
 let operators = document.getElementsByClassName("operator")
+let del = document.getElementsByClassName("delete")
+let del_button = del[0] 
+let clear = document.getElementsByClassName("clear")
+let clear_button = clear[0]
 
 function type_num(num) {
     if (typed_nums.textContent == "0") {
@@ -47,16 +51,24 @@ function type_num(num) {
     }
 }
 
-function type_decimal(elem) {
+function type_decimal(btn) {
     if (typed_nums.textContent.includes(".")) {
-        elem.disabled = true
+        btn.disabled = true
     } else {
-        elem.disabled = false
+        btn.disabled = false
         if (typed_nums.textContent.length >= 15) {
             typed_nums.textContent = typed_nums.textContent
         } else {
-            typed_nums.textContent += elem.textContent 
+            typed_nums.textContent += btn.textContent 
         }
+    }
+}
+
+function delete_num() {
+    if (typed_nums.textContent.length == 1) {
+        typed_nums.textContent = "0"
+    } else {
+        typed_nums.textContent = typed_nums.textContent.slice(0, -1)
     }
 }
 
@@ -69,3 +81,5 @@ for (let i = 0; i < numbers.length; i++) {
 decimal_button.addEventListener("click", function(){
     type_decimal(decimal_button)
 })
+
+del_button.addEventListener("click", delete_num)
