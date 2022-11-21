@@ -53,9 +53,8 @@ function type_num(num) {
 
 function type_decimal(btn) {
     if (typed_nums.textContent.includes(".")) {
-        btn.disabled = true
+        typed_nums.textContent += ""
     } else {
-        btn.disabled = false
         if (typed_nums.textContent.length >= 15) {
             typed_nums.textContent = typed_nums.textContent
         } else {
