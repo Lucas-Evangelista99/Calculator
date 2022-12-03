@@ -19,9 +19,9 @@ function operate(operator, a, b) {
         return add(a, b);
     } else if (operator == "-") {
         return subtract(a, b);
-    } else if (operator == "*") {
+    } else if (operator == "\u00D7") {
         return multiply(a, b);
-    } else if (operator == "/") {
+    } else if (operator == "\u00F7") {
         return divide(a, b);
     }
 }
@@ -34,6 +34,8 @@ let numbers = document.getElementsByClassName("number")
 let decimal = document.getElementsByClassName("decimal")
 let decimal_button = decimal[0]
 let operators = document.getElementsByClassName("operator")
+let equals = document.getElementsByClassName("equals")
+let equals_button = equals[0]
 let del = document.getElementsByClassName("delete")
 let del_button = del[0] 
 let clear = document.getElementsByClassName("clear")
@@ -43,7 +45,7 @@ function type_num(num) {
     if (typed_nums.textContent == "0") {
         typed_nums.textContent = num.textContent
     } else {
-        if (typed_nums.textContent.length >= 15) {
+        if (typed_nums.textContent.length >= 22) {
             typed_nums.textContent = typed_nums.textContent
         } else {
             typed_nums.textContent += num.textContent
@@ -55,7 +57,7 @@ function type_decimal(btn) {
     if (typed_nums.textContent.includes(".")) {
         typed_nums.textContent += ""
     } else {
-        if (typed_nums.textContent.length >= 15) {
+        if (typed_nums.textContent.length >= 22) {
             typed_nums.textContent = typed_nums.textContent
         } else {
             typed_nums.textContent += btn.textContent 
@@ -76,6 +78,47 @@ function clear_calc() {
     typed_nums.textContent = "0"
 }
 
+function calculate(btn) {
+    if (expression.textContent == "") {
+        expression.textContent += typed_nums.textContent += btn.textContent
+        typed_nums.textContent = "0"
+    } else {
+        let arr = expression.textContent.split(" ")
+        let arg_1 = arr[1]
+        let arg_2 = Number(arr[0])
+        let arg_3 = Number(typed_nums.textContent)
+        if (arg_1 == "\u00F7" && arg_3 == 0) {
+            alert("Bruh... xD (you can't divide by zero!)")
+        } else {
+            let result = operate(arg_1, arg_2, arg_3)
+            if (result % 1 != 0) {
+                result = Math.round((result + Number.EPSILON) * 100) / 100
+            }
+            expression.textContent = result.toString() + btn.textContent
+            typed_nums.textContent = "0"
+        }
+    }
+}
+
+function equals_operation() {
+    if (expression.textContent != "") {
+        let arr = expression.textContent.split(" ")
+        let arg_1 = arr[1]
+        let arg_2 = Number(arr[0])
+        let arg_3 = Number(typed_nums.textContent)
+        if (arg_1 == "\u00F7" && arg_3 == 0) {
+            alert("Bruh... xD (you can't divide by zero!)")
+        } else {
+            let result = operate(arg_1, arg_2, arg_3)
+            if (result % 1 != 0) {
+                result = Math.round((result + Number.EPSILON) * 100) / 100 
+            }
+            expression.textContent = ""
+            typed_nums.textContent = result.toString()
+        }
+    }
+}
+
 for (let i = 0; i < numbers.length; i++) {
     numbers[i].addEventListener("click", function(){
         type_num(numbers[i])
@@ -88,3 +131,11 @@ decimal_button.addEventListener("click", function(){
 
 del_button.addEventListener("click", delete_num)
 clear_button.addEventListener("click", clear_calc)
+
+for (let i = 0; i < operators.length; i++) {
+    operators[i].addEventListener("click", function(){
+        calculate(operators[i])
+    })
+}
+
+equals_button.addEventListener("click", equals_operation)
