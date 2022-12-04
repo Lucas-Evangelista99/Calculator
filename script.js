@@ -44,6 +44,8 @@ let clear_button = clear[0]
 function type_num(num) {
     if (typed_nums.textContent == "0") {
         typed_nums.textContent = num.textContent
+    } else if (typed_nums.textContent == "Infinity" || typed_nums.textContent == "-Infinity") {
+        typed_nums.textContent += ""
     } else {
         if (typed_nums.textContent.length >= 22) {
             typed_nums.textContent = typed_nums.textContent
@@ -56,6 +58,8 @@ function type_num(num) {
 function type_decimal(btn) {
     if (typed_nums.textContent.includes(".")) {
         typed_nums.textContent += ""
+    } else if (typed_nums.textContent == "Infinity" || typed_nums.textContent == "-Infinity") {
+        typed_nums.textContent += ""
     } else {
         if (typed_nums.textContent.length >= 22) {
             typed_nums.textContent = typed_nums.textContent
@@ -67,6 +71,8 @@ function type_decimal(btn) {
 
 function delete_num() {
     if (typed_nums.textContent.length == 1) {
+        typed_nums.textContent = "0"
+    } else if (typed_nums.textContent == "Infinity" || typed_nums.textContent == "-Infinity") {
         typed_nums.textContent = "0"
     } else {
         typed_nums.textContent = typed_nums.textContent.slice(0, -1)
