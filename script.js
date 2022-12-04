@@ -119,6 +119,67 @@ function equals_operation() {
     }
 }
 
+function keyboard(e) {
+    switch(e.key){
+        case "0":
+            type_num(numbers[9])
+            break
+        case "1":
+            type_num(numbers[6])
+            break
+        case "2":
+            type_num(numbers[7])
+            break
+        case "3":
+            type_num(numbers[8])
+            break
+        case "4":
+            type_num(numbers[3])
+            break
+        case "5":
+            type_num(numbers[4])
+            break
+        case "6":
+            type_num(numbers[5])
+            break
+        case "7":
+            type_num(numbers[0])
+            break
+        case "8":
+            type_num(numbers[1])
+            break
+        case "9":
+            type_num(numbers[2])
+            break
+        case "+":
+            calculate(operators[3])
+            break
+        case "-":
+            calculate(operators[2])
+            break
+        case "*":
+        case "x":
+            calculate(operators[1])
+            break
+        case "/":
+            calculate(operators[0])
+            break
+        case ".":
+            type_decimal(decimal_button)
+            break
+        case "Enter":
+        case "=":
+            equals_operation()
+            break
+        case "Backspace":
+            delete_num()
+            break
+        case "Escape":
+            clear_calc()
+            break
+    }
+}
+
 for (let i = 0; i < numbers.length; i++) {
     numbers[i].addEventListener("click", function(){
         type_num(numbers[i])
@@ -139,3 +200,4 @@ for (let i = 0; i < operators.length; i++) {
 }
 
 equals_button.addEventListener("click", equals_operation)
+document.addEventListener("keydown", keyboard)
